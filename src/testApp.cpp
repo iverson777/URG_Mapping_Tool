@@ -1,31 +1,7 @@
 #include "testApp.h"
 
 //--------------------------------------------------------------
-void testApp::setup(){
-//video
-    videoURL[0]="01-1-Loop.mp4";
-    videoURL[1]="1-2.mp4";
-    videoURL[2]="02-Loop.mp4";
-    videoURL[3]="03.mp4";
-    videoURL[4]="04.mp4";
-    videoURL[5]="05.mp4";
-    currentVid = 0;
-    for(i=0; i<maxVIDEO; i++) {
-        videos[i].loadMovie("movies/"+videoURL[i]);
-        videos[i].setLoopState(OF_LOOP_NORMAL);
-    }
-    touchAlpha=255;
-    VideoXscale=1;
-    VideoYscale=0.55f;
-    
-//ball
-    balls.assign(20	, ball());
-    setBallPos(false);
-    //cam.reset();
-    cam.setFarClip(30000);
-    
-    
-    
+void testApp::setup(){    
 //urg
     urg.setMode(ofxUrg::DISTANCE_INTENSITY);
     urg.setupEthernet();
@@ -53,8 +29,7 @@ void testApp::setup(){
     clickSwitch=true;
     countTime=.5f;
     startTime=0;
-    canTouchTF=false;
-
+    
 //system
     ofSetVerticalSync(true);
     ofSetFrameRate(60);
@@ -113,20 +88,6 @@ void testApp::setupGui(){
     gui.add(guiWarpPoint2.set("Warp Point2",ofVec2f(warpPoint[2].x,warpPoint[2].y),ofVec2f(0,0),ofVec2f(ofGetWidth(),ofGetHeight())));
     gui.add(guiWarpPoint3.set("Warp Point3",ofVec2f(warpPoint[3].x,warpPoint[3].y),ofVec2f(0,0),ofVec2f(ofGetWidth(),ofGetHeight())));
     
-    //video
-    gui.add(guiVideoScale.setup("VideoScale", ofVec2f(VideoXscale, VideoYscale), ofVec2f(0, 0), ofVec2f(2, 2)));
-    gui.add(guiCurrentVideo.set("CurrentVideo", ""));
-    
-    gui.add(guiVideoNum0.set("Video0", ""));
-    gui.add(guiVideoNum1.set("Video1", ""));
-    gui.add(guiVideoNum2.set("Video2", ""));
-    gui.add(guiVideoNum3.set("Video3", ""));
-    gui.add(guiVideoNum4.set("Video4", ""));
-    gui.add(guiVideoNum5.set("Video5", ""));
-    
-    //ball
-    gui.add(guiBallExpPos.setup("BallExpPos",ofVec2f(0, 0),ofVec2f(-1000, -1000),ofVec2f(1000, 1000)));
-    gui.add(guiBallRevPos.setup("BallRevPos", ofVec2f(posX, posY), ofVec2f(-10000, -10000),ofVec2f(10000, 10000)));
     
     gui.loadFromFile("set.xml");
     
@@ -138,47 +99,6 @@ void testApp::setupGui(){
 
 //--------------------------------------------------------------
 void testApp::update(){
-//video
-    //cout<<ofToString(goChangeTo)<<endl;
-    videos[currentVid].play();
-    videos[currentVid].update();
-    
-    if (videos[currentVid].getPosition()>=.93) {
-        //cout<< "video finish"<<endl;
-        if (goChangeTo==-1) {
-            if (currentVid!=0 && currentVid!=2) {
-                if (bingo[0] && bingo[1] && bingo[2]) {
-                    //if three steps are finished...
-                    bingo[0]=bingo[1]=bingo[2]=false;
-                    goChangeTo=0;
-                }else{
-                    goChangeTo=2;
-                }
-            }
-        }else{
-            videos[currentVid].setPosition(0);
-            videos[currentVid].stop();
-            
-            currentVid=goChangeTo;
-            videos[currentVid].play();
-            goChangeTo=-1;
-            if(currentVid==2){
-                setBallPos(true);
-            }else{
-                setBallPos(false);
-            }
-        }
-
-    }
-    if(touchAlpha<255){
-        touchAlpha+=30;
-    }
-   
-//ball
-    for(i=0;i<balls.size();i++){
-        balls[i].update();
-    }
-    cam.setPosition(ofVec3f(cam.getPosition().x+sin(ofGetElapsedTimef())*.9,cam.getPosition().y+cos(ofGetElapsedTimef())*.9,cam.getPosition().z));
     
 //urg
     urg.update();
@@ -255,94 +175,12 @@ void testApp::update(){
         }
     }
     
-    //touch timing
-    int targetPos1,targetPos2;
-    string hitColor1,hitColor2;
-    if(currentVid!=0 && goChangeTo==-1){
-        if(finalHitPoint.size()>=2){
-            targetPos1=getClosestBall(finalHitPoint[0]);
-            targetPos2=getClosestBall(finalHitPoint[1]);
-            if(targetPos1!=-1){
-                balls[targetPos1].targetPos.z=balls[targetPos1].targetPos.z+200;
-                hitColor1=balls[targetPos1].color;
-            }
-            if(targetPos2!=-1){
-                balls[targetPos2].targetPos.z=balls[targetPos2].targetPos.z+200;
-                hitColor2=balls[targetPos2].color;
-            }
-            if(targetPos1!=-1 && targetPos2!=-1 && hitColor1!=hitColor2){
-                if(bingo[0] && bingo[1]){
-                    clickButton(5,2);
-                    
-                }
-            }else{
-                if(targetPos1!=-1){
-                    if(balls[targetPos1].color=="green"){
-                        clickButton(4,1);
-                    }else{
-                        clickButton(3,0);
-                    }
-                }else if(targetPos2!=-1){
-                    if(balls[targetPos2].color=="green"){
-                        clickButton(4,1);
-                    }else{
-                        clickButton(3,0);
-                        
-                    }
-                }
-            }
-        }else if(finalHitPoint.size()==1){
-            targetPos1=getClosestBall(finalHitPoint[0]);
-            if(targetPos1!=-1){
-                balls[targetPos1].targetPos.z=balls[targetPos1].targetPos.z+200;
-                if(balls[targetPos1].color=="green"){
-                    clickButton(4,1);
-                }
-                else {
-                    clickButton(3,0);
-                }
-            }
-        }
-        
-    }else{
-        if(finalHitPoint.size()>0 && currentVid==0){
-            touchAlpha=100;
-            goChangeTo=1;
-        }
-    }
 
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-//video
-    ofPushMatrix();
-    if(needScale){
-        ofScale(VideoXscale,VideoYscale);
-    }
-    ofSetColor(255, 255, 255,touchAlpha);
-    videos[currentVid].draw(0,0);
-    ofSetColor(255);
-    ofPopMatrix();
-//ball
-    cam.begin();
-    for(i=0;i<balls.size();i++){
-        balls[i].draw();
-    }
-    cam.end();
-    for(i=0;i<balls.size();i++){
-        worldToScreen=cam.worldToScreen(balls[i].targetPos);
-        diff=abs(balls[i].currentPosZ-balls[i].targetPos.z);
-        if(diff < 2 && isExplode && !canTouchTF  && balls[i].currentPosZ>-3000){
-            canTouchTF=true;
-            cout<<"switch on" <<endl;
-        }
 
-        if(drawDebug){
-            ofDrawBitmapStringHighlight(ofToString(i), worldToScreen);
-        }
-    }
-    
 //cv
     if(drawDebug){
         colorImg.draw(0,0);
@@ -370,10 +208,8 @@ void testApp::draw(){
         ofLine(320/2,0,320/2,240);
         ofSetColor(255);
     
-        if(touchAlpha>0){
-            touchAlpha-=20;
-        }
-        ofSetColor(255,255,0,touchAlpha);
+        
+        ofSetColor(255,255,0,255);
         ofFill();
         for(i=0;i<finalHitPoint.size();i++){
             ofCircle(finalHitPoint[i], 20);
@@ -395,103 +231,25 @@ void testApp::draw(){
         warpPoint[3] = ofVec2f(guiWarpPoint3);
         VideoXscale = guiVideoScale->x;
         VideoYscale = guiVideoScale->y;
-        guiCurrentVideo = ofToString(currentVid);
-        guiVideoNum0 = ofToString(videos[0].getPosition());
-        guiVideoNum1 = ofToString(videos[1].getPosition());
-        guiVideoNum2 = ofToString(videos[2].getPosition());
-        guiVideoNum3 = ofToString(videos[3].getPosition());
-        guiVideoNum4 = ofToString(videos[4].getPosition());
-        guiVideoNum5 = ofToString(videos[5].getPosition());
         gui.draw();
     }
 
     
 }
 
-void testApp::clickButton(int goWhere, int bingoWho){
-    if(goChangeTo==-1 && canTouchTF){
-        bingo[bingoWho]=true;
-        goChangeTo=goWhere;
-        cout<<ofToString(goWhere)<<endl;
-        canTouchTF=false;
-        cout<<"switch off"<<endl;
-    }
-}
 
 bool comparePosz(const ball  &a ,const ball  &b){
     return a.targetPos.z < b.targetPos.z;
     
 }
 
-void testApp::setBallPos(bool isEx){
-    
-    for(i=0;i<balls.size();i++){
-        
-        bool r;
-        
-        if(isEx){
-            posX=ofRandom(0-ofGetWidth()/2+guiBallExpPos->x, ofGetWidth()/2+guiBallExpPos->x);
-            posY=ofRandom(0-ofGetHeight()/2+guiBallExpPos->y, ofGetHeight()/2+guiBallExpPos->y);
-            posZ=ofRandom(-3000, -1000);
-            r=true;
-        }else{
-            //posX=0;
-            //posY=4500;
-            posX=guiBallRevPos->x;
-            posY=guiBallRevPos->y;
-            posZ=-30000;
-            r=false;
-        }
-        
-        balls[i].setPos(posX, posY, posZ, r);
-    }
-    isExplode=isEx;
-    ofSort(balls,comparePosz);
-}
 
-int testApp::getClosestBall(ofPoint clickPos){
-    ofPoint ballPos;
-    float distance=1000.f;
-    float tempDis;
-    int targetBall=-1;
-    for(i=0;i<balls.size();i++){
-        ballPos=cam.worldToScreen(balls[i].targetPos);
-        tempDis=clickPos.distance(ballPos);
-        if(distance>tempDis){
-            distance=tempDis;
-            targetBall=i;
-        }
-    }
-    if(distance<100){
-        
-        return targetBall;
-    }else{
-        return -1;
-    }
-    
-}
+
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
     switch (key){
-        case '1':
-            goChangeTo=1;
-            touchAlpha=100;
-            break;
-        case '2':
-            clickButton(3,0);
-            break;
-        case '3':
-            clickButton(4,1);
-            break;
-        case '4':
-            if(bingo[0] && bingo[1]){
-                clickButton(5,2);
-            }
-            break;
-        case 'b':
-            setBallPos(!isExplode);
-            break;
+        
         case 'd':
             drawDebug=!drawDebug;
             break;
@@ -569,19 +327,6 @@ void testApp::mousePressed(int x, int y, int button){
     if(warpPoint.size()<4){
         warpPoint.push_back(ofPoint(mouseX,mouseY));
         cout<<ofToString(ofToString(warpPoint.size())+","+ofToString(mouseX)+","+ofToString(mouseY))<<endl;
-    }else{
-        int targetBall;
-        targetBall=getClosestBall(ofPoint(mouseX,mouseY));
-        if(targetBall!=-1){
-            balls[targetBall].targetPos.z=balls[targetBall].targetPos.z+200;
-            if(balls[targetBall].color=="green"){
-                clickButton(4,1);
-
-            }else{
-                clickButton(3,0);
-                
-            }
-        }
     }
 }
 

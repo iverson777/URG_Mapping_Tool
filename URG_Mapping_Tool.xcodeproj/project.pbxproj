@@ -51,15 +51,10 @@
 		F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */; };
 		FA4073681B85885000BAC7AF /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4073661B85885000BAC7AF /* testApp.cpp */; };
 		FA40736B1B85885700BAC7AF /* ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4073691B85885700BAC7AF /* ball.cpp */; };
-		FA4073721B85887F00BAC7AF /* ofxAVFVideoPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA40736F1B85887F00BAC7AF /* ofxAVFVideoPlayer.mm */; };
-		FA4073731B85887F00BAC7AF /* ofxAVFVideoRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4073711B85887F00BAC7AF /* ofxAVFVideoRenderer.m */; };
 		FA40737D1B85888E00BAC7AF /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4073761B85888E00BAC7AF /* ofxXmlSettings.cpp */; };
 		FA40737E1B85888E00BAC7AF /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4073791B85888E00BAC7AF /* tinyxml.cpp */; };
 		FA40737F1B85888E00BAC7AF /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA40737B1B85888E00BAC7AF /* tinyxmlerror.cpp */; };
 		FA4073801B85888E00BAC7AF /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA40737C1B85888E00BAC7AF /* tinyxmlparser.cpp */; };
-		FA4073821B85890400BAC7AF /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4073811B85890300BAC7AF /* CoreMedia.framework */; };
-		FA4073841B85890D00BAC7AF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4073831B85890D00BAC7AF /* QuartzCore.framework */; };
-		FA4073861B85891400BAC7AF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4073851B85891400BAC7AF /* AVFoundation.framework */; };
 		FB09C6B2A1DA0EA217240CB8 /* ofxCvGrayscaleImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 057122A817D12571F8C0C7A4 /* ofxCvGrayscaleImage.cpp */; };
 		FC93BFA048572C85A51226CD /* urg_ring_buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D6EBDBF1C3C4D703EF2092F /* urg_ring_buffer.c */; };
 /* End PBXBuildFile section */
@@ -259,19 +254,12 @@
 		FA4073671B85885000BAC7AF /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
 		FA4073691B85885700BAC7AF /* ball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ball.cpp; sourceTree = "<group>"; };
 		FA40736A1B85885700BAC7AF /* ball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ball.h; sourceTree = "<group>"; };
-		FA40736E1B85887F00BAC7AF /* ofxAVFVideoPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxAVFVideoPlayer.h; sourceTree = "<group>"; };
-		FA40736F1B85887F00BAC7AF /* ofxAVFVideoPlayer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxAVFVideoPlayer.mm; sourceTree = "<group>"; };
-		FA4073701B85887F00BAC7AF /* ofxAVFVideoRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxAVFVideoRenderer.h; sourceTree = "<group>"; };
-		FA4073711B85887F00BAC7AF /* ofxAVFVideoRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ofxAVFVideoRenderer.m; sourceTree = "<group>"; };
 		FA4073761B85888E00BAC7AF /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		FA4073771B85888E00BAC7AF /* ofxXmlSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
 		FA4073791B85888E00BAC7AF /* tinyxml.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
 		FA40737A1B85888E00BAC7AF /* tinyxml.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
 		FA40737B1B85888E00BAC7AF /* tinyxmlerror.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlerror.cpp; sourceTree = "<group>"; };
 		FA40737C1B85888E00BAC7AF /* tinyxmlparser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
-		FA4073811B85890300BAC7AF /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		FA4073831B85890D00BAC7AF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		FA4073851B85891400BAC7AF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FB213FF0567D1B312DDBD05D /* linear_index.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = linear_index.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/linear_index.h; sourceTree = SOURCE_ROOT; };
 		FD609E2EC17FCE181DFE635F /* dist.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = dist.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/dist.h; sourceTree = SOURCE_ROOT; };
 		FEDA0B6056089762F5FA11CA /* lsh_table.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = lsh_table.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/lsh_table.h; sourceTree = SOURCE_ROOT; };
@@ -283,9 +271,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA4073861B85891400BAC7AF /* AVFoundation.framework in Frameworks */,
-				FA4073841B85890D00BAC7AF /* QuartzCore.framework in Frameworks */,
-				FA4073821B85890400BAC7AF /* CoreMedia.framework in Frameworks */,
 				E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */,
 				E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */,
 				E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */,
@@ -601,7 +586,6 @@
 				480A780D8D0308AE4A368801 /* ofxGui */,
 				A0B90D3B0ADB9C1716816714 /* ofxOpenCv */,
 				D2AB221E7B134D8D24C7F71B /* ofxUrg */,
-				FA40736C1B85887F00BAC7AF /* ofxAVFVideoPlayer */,
 				FA4073741B85888E00BAC7AF /* ofxXmlSettings */,
 			);
 			name = addons;
@@ -715,9 +699,6 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
-				FA4073851B85891400BAC7AF /* AVFoundation.framework */,
-				FA4073831B85890D00BAC7AF /* QuartzCore.framework */,
-				FA4073811B85890300BAC7AF /* CoreMedia.framework */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
@@ -765,26 +746,6 @@
 				0F07FE174552DEF007BF5AD5 /* opencv2 */,
 			);
 			name = include;
-			sourceTree = "<group>";
-		};
-		FA40736C1B85887F00BAC7AF /* ofxAVFVideoPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				FA40736D1B85887F00BAC7AF /* src */,
-			);
-			name = ofxAVFVideoPlayer;
-			sourceTree = "<group>";
-		};
-		FA40736D1B85887F00BAC7AF /* src */ = {
-			isa = PBXGroup;
-			children = (
-				FA40736E1B85887F00BAC7AF /* ofxAVFVideoPlayer.h */,
-				FA40736F1B85887F00BAC7AF /* ofxAVFVideoPlayer.mm */,
-				FA4073701B85887F00BAC7AF /* ofxAVFVideoRenderer.h */,
-				FA4073711B85887F00BAC7AF /* ofxAVFVideoRenderer.m */,
-			);
-			name = src;
-			path = ../../../addons/ofxAVFVideoPlayer/src;
 			sourceTree = "<group>";
 		};
 		FA4073741B85888E00BAC7AF /* ofxXmlSettings */ = {
@@ -914,7 +875,6 @@
 				FA40737D1B85888E00BAC7AF /* ofxXmlSettings.cpp in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
-				FA4073731B85887F00BAC7AF /* ofxAVFVideoRenderer.m in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
 				250A95BA26587BE85DB0A353 /* ofxCvColorImage.cpp in Sources */,
 				1D5F3298C2FA073628012944 /* ofxCvContourFinder.cpp in Sources */,
@@ -939,7 +899,6 @@
 				493CC0B9808962FEF69E821D /* urg_tcpclient.c in Sources */,
 				4530C78B32270BB034D30449 /* urg_utils.c in Sources */,
 				FA40737F1B85888E00BAC7AF /* tinyxmlerror.cpp in Sources */,
-				FA4073721B85887F00BAC7AF /* ofxAVFVideoPlayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
