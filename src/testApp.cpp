@@ -2,21 +2,6 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
-//video
-    videoURL[0]="01-1-Loop.mp4";
-    videoURL[1]="1-2.mp4";
-    videoURL[2]="02-Loop.mp4";
-    videoURL[3]="03.mp4";
-    videoURL[4]="04.mp4";
-    videoURL[5]="05.mp4";
-    currentVid = 0;
-    for(i=0; i<maxVIDEO; i++) {
-        videos[i].loadMovie("movies/"+videoURL[i]);
-        videos[i].setLoopState(OF_LOOP_NORMAL);
-    }
-    touchAlpha=255;
-    VideoXscale=1;
-    VideoYscale=0.55f;
     
 //ball
     balls.assign(20	, ball());
@@ -140,42 +125,9 @@ void testApp::setupGui(){
 void testApp::update(){
 //video
     //cout<<ofToString(goChangeTo)<<endl;
-    videos[currentVid].play();
-    videos[currentVid].update();
-    
-    if (videos[currentVid].getPosition()>=.93) {
-        //cout<< "video finish"<<endl;
-        if (goChangeTo==-1) {
-            if (currentVid!=0 && currentVid!=2) {
-                if (bingo[0] && bingo[1] && bingo[2]) {
-                    //if three steps are finished...
-                    bingo[0]=bingo[1]=bingo[2]=false;
-                    goChangeTo=0;
-                }else{
-                    goChangeTo=2;
-                }
-            }
-        }else{
-            videos[currentVid].setPosition(0);
-            videos[currentVid].stop();
-            
-            currentVid=goChangeTo;
-            videos[currentVid].play();
-            goChangeTo=-1;
-            if(currentVid==2){
-                setBallPos(true);
-            }else{
-                setBallPos(false);
-            }
-        }
 
-    }
-    if(touchAlpha<255){
-        touchAlpha+=30;
-    }
-   
-//ball
-    for(i=0;i<balls.size();i++){
+    //ball
+    for(int i=0;i<balls.size();i++){
         balls[i].update();
     }
     cam.setPosition(ofVec3f(cam.getPosition().x+sin(ofGetElapsedTimef())*.9,cam.getPosition().y+cos(ofGetElapsedTimef())*.9,cam.getPosition().z));
@@ -258,7 +210,7 @@ void testApp::update(){
     //touch timing
     int targetPos1,targetPos2;
     string hitColor1,hitColor2;
-    if(currentVid!=0 && goChangeTo==-1){
+ //   if(currentVid!=0 && goChangeTo==-1){
         if(finalHitPoint.size()>=2){
             targetPos1=getClosestBall(finalHitPoint[0]);
             targetPos2=getClosestBall(finalHitPoint[1]);
@@ -271,10 +223,10 @@ void testApp::update(){
                 hitColor2=balls[targetPos2].color;
             }
             if(targetPos1!=-1 && targetPos2!=-1 && hitColor1!=hitColor2){
-                if(bingo[0] && bingo[1]){
-                    clickButton(5,2);
-                    
-                }
+//                if(bingo[0] && bingo[1]){
+//                    clickButton(5,2);
+//                    
+//                }
             }else{
                 if(targetPos1!=-1){
                     if(balls[targetPos1].color=="green"){
@@ -304,11 +256,11 @@ void testApp::update(){
             }
         }
         
-    }else{
-        if(finalHitPoint.size()>0 && currentVid==0){
-            touchAlpha=100;
-            goChangeTo=1;
-        }
+    else{
+//        if(finalHitPoint.size()>0 && currentVid==0){
+//            touchAlpha=100;
+//            goChangeTo=1;
+//        }
     }
 
 }
@@ -320,8 +272,8 @@ void testApp::draw(){
     if(needScale){
         ofScale(VideoXscale,VideoYscale);
     }
-    ofSetColor(255, 255, 255,touchAlpha);
-    videos[currentVid].draw(0,0);
+//    ofSetColor(255, 255, 255,touchAlpha);
+//    videos[currentVid].draw(0,0);
     ofSetColor(255);
     ofPopMatrix();
 //ball
@@ -370,10 +322,10 @@ void testApp::draw(){
         ofLine(320/2,0,320/2,240);
         ofSetColor(255);
     
-        if(touchAlpha>0){
-            touchAlpha-=20;
-        }
-        ofSetColor(255,255,0,touchAlpha);
+//        if(touchAlpha>0){
+//            touchAlpha-=20;
+//        }
+//        ofSetColor(255,255,0,touchAlpha);
         ofFill();
         for(i=0;i<finalHitPoint.size();i++){
             ofCircle(finalHitPoint[i], 20);
@@ -395,13 +347,13 @@ void testApp::draw(){
         warpPoint[3] = ofVec2f(guiWarpPoint3);
         VideoXscale = guiVideoScale->x;
         VideoYscale = guiVideoScale->y;
-        guiCurrentVideo = ofToString(currentVid);
-        guiVideoNum0 = ofToString(videos[0].getPosition());
-        guiVideoNum1 = ofToString(videos[1].getPosition());
-        guiVideoNum2 = ofToString(videos[2].getPosition());
-        guiVideoNum3 = ofToString(videos[3].getPosition());
-        guiVideoNum4 = ofToString(videos[4].getPosition());
-        guiVideoNum5 = ofToString(videos[5].getPosition());
+//        guiCurrentVideo = ofToString(currentVid);
+//        guiVideoNum0 = ofToString(videos[0].getPosition());
+//        guiVideoNum1 = ofToString(videos[1].getPosition());
+//        guiVideoNum2 = ofToString(videos[2].getPosition());
+//        guiVideoNum3 = ofToString(videos[3].getPosition());
+//        guiVideoNum4 = ofToString(videos[4].getPosition());
+//        guiVideoNum5 = ofToString(videos[5].getPosition());
         gui.draw();
     }
 
