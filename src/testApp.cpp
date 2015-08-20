@@ -384,12 +384,7 @@ void testApp::draw(){
     
 //GUI
     if(drawDebug){
-        ofShowCursor();//show mouse.
-//        ofDrawBitmapStringHighlight(ofToString(ofGetFrameRate()), 0, 20);
-//        ofDrawBitmapStringHighlight(ofToString(currentVid), 0, 40);
-//        for(i=0;i<maxVIDEO;i++){
-//            ofDrawBitmapStringHighlight(ofToString(i)+":"+ofToString(videos[i].getPosition()), 0,60+i*20);
-//        }
+        ofShowCursor();
         guiFPS=ofGetFrameRate();
         guiDoShow = drawDebug;
         guiLearnBg = bLearnBakground;
