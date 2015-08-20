@@ -95,17 +95,11 @@ class testApp : public ofBaseApp{
     ofParameter<bool>           guiDoFullScreen;
     void    guiSetFullscreen(bool &_value){ofSetFullscreen(_value);};
     
-    //ofxVec2Slider               guiWindowShape;
-    //ofParameter<ofVec2f>        guiWindowShape;
-    //void    guiSetWinShape(float &_w,float &_h);
     ofParameter<float>        guiWindowShapeW;
     ofParameter<float>        guiWindowShapeH;
     void    guiSetWinShapeW(float &_w);
     void    guiSetWinShapeH(float &_h);
     
-    //ofxVec2Slider               guiWindowPos;
-    //ofParameter<ofVec2f>          guiWindowPos;
-    //void    guiSetWinPos(int &_x,int &_y);
     ofParameter<float>        guiWinPosX;
     ofParameter<float>        guiWinPosY;
     void    guiSetWinPosX(float &_x);
