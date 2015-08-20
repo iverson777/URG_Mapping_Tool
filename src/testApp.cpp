@@ -463,12 +463,7 @@ int testApp::getClosestBall(ofPoint clickPos){
         }
     }
     if(distance<100){
-        /*balls[targetBall].targetPos.z=balls[targetBall].targetPos.z+200;
-        if(balls[targetBall].color=="green"){
-            clickButton(4,1);
-        }else{
-            clickButton(3,0);
-        }*/
+        
         return targetBall;
     }else{
         return -1;
