@@ -95,9 +95,6 @@ class testApp : public ofBaseApp{
     ofParameter<bool>           guiDoFullScreen;
     void    guiSetFullscreen(bool &_value){ofSetFullscreen(_value);};
     
-    //ofxVec2Slider               guiWindowShape;
-    //ofParameter<ofVec2f>        guiWindowShape;
-    //void    guiSetWinShape(float &_w,float &_h);
     ofParameter<float>        guiWindowShapeW;
     ofParameter<float>        guiWindowShapeH;
     void    guiSetWinShapeW(float &_w);
