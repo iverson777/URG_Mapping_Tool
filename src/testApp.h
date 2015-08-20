@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxUrg.h"
 #include "ofxOpenCv.h"
+#include "ofxAVFVideoPlayer.h"
 #include "ofxGui.h"
 #include "ofxXmlSettings.h"
 #include "ball.h"
@@ -30,7 +31,15 @@ class testApp : public ofBaseApp{
         int getClosestBall(ofPoint clickPos);
     
     //video
-        int i;
+        ofxAVFVideoPlayer       videos[6];
+        static const int        maxVIDEO = 6;
+        string                  videoURL[6];
+        int                     i, currentVid;
+        bool                    videoReady;
+        int                     goChangeTo;
+        bool                    bingo[3];
+        int                     touchAlpha;
+    
     //ball
         vector<ball>            balls;
         bool                    isExplode;
