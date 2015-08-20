@@ -539,18 +539,13 @@ void testApp::guiReset(){
     gui.loadFromFile("reset.xml");
 
 }
-//void testApp::guiSetWinShape(float &_w,float &_h){
-//    ofSetWindowShape(_w,_h);
-//}
 void testApp::guiSetWinShapeW(float &_w){
     ofSetWindowShape(_w,guiWindowShapeH);
 }
 void testApp::guiSetWinShapeH(float &_h){
     ofSetWindowShape(guiWindowShapeW,_h);
 }
-//void testApp::guiSetWinPos(int &_x, int &_y){
-//    ofSetWindowPosition(_x, _y);
-//}
+
 void testApp::guiSetWinPosX(float &_x){
     ofSetWindowPosition(_x,guiWinPosY);
 }
