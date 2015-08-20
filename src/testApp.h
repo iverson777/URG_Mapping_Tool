@@ -3,7 +3,6 @@
 #include "ofMain.h"
 #include "ofxUrg.h"
 #include "ofxOpenCv.h"
-#include "ofxAVFVideoPlayer.h"
 #include "ofxGui.h"
 #include "ofxXmlSettings.h"
 #include "ball.h"
@@ -24,32 +23,8 @@ class testApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-        void clickButton(int goWhere, int bingoWho);
         
-        void setBallPos(bool isEx);
-    
-        int getClosestBall(ofPoint clickPos);
-    
-    //video
-        ofxAVFVideoPlayer       videos[6];
-        static const int        maxVIDEO = 6;
-        string                  videoURL[6];
-        int                     i, currentVid;
-        bool                    videoReady;
-        int                     goChangeTo;
-        bool                    bingo[3];
-        int                     touchAlpha;
-    
-    //ball
-        vector<ball>            balls;
-        bool                    isExplode;
-        //ofEasyCam               cam;
-        ofCamera                cam;
-        ofVec3f                 worldToScreen;
-        float                   diff;
-        bool                    canTouchTF;
-        int                     posX,posY,posZ;
-
+    int i;
     //urg
         ofxUrg::Device          urg;
         float                   scale;
